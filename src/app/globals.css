@@ -57,3 +57,115 @@ summary:focus-visible {
   outline: 2px solid #0284c7;
   outline-offset: 2px;
 }
+
+/* ---------------------------------------------------------------------------
+   Sales dashboard
+   --------------------------------------------------------------------------- */
+
+/* Modern Web Guidance (dialog): stop scroll chaining from the modal to the page */
+dialog:modal {
+  overscroll-behavior: contain;
+}
+
+dialog::backdrop {
+  overflow: hidden;
+  overscroll-behavior: contain;
+}
+
+/* Modern Web Guidance (responsive-table): scrollable region + sticky header,
+   stacked cards when the table's own container gets narrow. */
+.sales-table-wrap {
+  overflow: auto;
+  max-inline-size: 100%;
+  max-block-size: min(640px, 75vh);
+  container-type: inline-size;
+}
+
+.sales-table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.sales-table thead {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 1;
+}
+
+.sales-table thead th {
+  background: #f8fafc;
+  padding: 0.625rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #64748b;
+  border-block-end: 1px solid #e2e8f0;
+}
+
+.sales-table thead th:first-child,
+.sales-table tbody td:first-child {
+  padding-inline-start: 1.25rem;
+  padding-inline-end: 0.75rem;
+  inline-size: 3.5rem;
+  text-align: center;
+}
+
+.sales-table tbody th,
+.sales-table tbody td {
+  padding: 0.625rem 0.75rem;
+  border-block-end: 1px solid #f1f5f9;
+  vertical-align: middle;
+}
+
+@container (width < 640px) {
+  .sales-table,
+  .sales-table tbody,
+  .sales-table tr,
+  .sales-table th,
+  .sales-table td {
+    display: block;
+  }
+
+  .sales-table thead {
+    display: none;
+  }
+
+  .sales-table tbody tr {
+    position: relative;
+    margin: 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
+
+  .sales-table tbody th {
+    padding-inline-start: 2.75rem;
+    background: #f8fafc;
+  }
+
+  /* Selection checkbox floats cleanly inside the card header */
+  .sales-table tbody td:first-child {
+    position: absolute;
+    inset-block-start: 0.75rem;
+    inset-inline-start: 0.875rem;
+    padding: 0;
+    border: 0;
+    inline-size: auto;
+  }
+
+  .sales-table tbody td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    text-align: end;
+  }
+
+  .sales-table tbody td[data-label]:not([data-label=""])::before {
+    content: attr(data-label);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #64748b;
+  }
+}

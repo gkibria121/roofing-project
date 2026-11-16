@@ -29,7 +29,9 @@ import {
   Printer,
   ShieldCheck,
   Sparkles,
+  Users,
 } from "lucide-react";
+import Link from "next/link";
 
 export function RoofingEstimator() {
   // Roof Size / Feet State
@@ -216,6 +218,13 @@ export function RoofingEstimator() {
 
           {/* Live Header Estimate Pill */}
           <div className="flex items-center gap-3">
+            <Link
+              href="/sales"
+              className="hidden sm:inline-flex items-center gap-1.5 rounded-lg border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50"
+            >
+              <Users className="w-4 h-4" aria-hidden />
+              Sales dashboard
+            </Link>
             <div className="hidden md:flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 text-xs">
               <span className="text-slate-500">Region:</span>
               <span className="font-semibold text-slate-800">
